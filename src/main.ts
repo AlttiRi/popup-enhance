@@ -25,7 +25,3 @@ makeMovable(
         restore: true,
     }),
 );
-
-console.log(class A {
-    static a = 123;
-});

@@ -21,16 +21,9 @@ export type MovableOpts = {
 }
 
 export function makeMovable(element: HTMLElement, {
-    handle, onMove, onStop: _onStop, state
+    handle, onMove, onStop, state
 }: MovableOpts = {}) {
-    const _onMove = (state: MoveState) => {
-        onMove?.(state);
-        assignStyleState(element, state);
-    };
-    if (state) { /* restore position */
-        _onMove(state);
-        _onStop?.(state);
-    }
+    state && assignStyleState(element, state); /* restore position */
 
     const _handle = handle || element;
     _handle.style.userSelect  = "none";
@@ -43,20 +36,21 @@ export function makeMovable(element: HTMLElement, {
         const offsetX = event.clientX - parseInt(getComputedStyle(element).left);
 
         let state: MoveState;
-        function onMove(event: PointerEvent) {
+        function _onMove(event: PointerEvent) {
             !_handle.hasPointerCapture(event.pointerId) && _handle.setPointerCapture(event.pointerId);
             state = {
                 top:  `${event.clientY - offsetY}px`,
                 left: `${event.clientX - offsetX}px`,
             };
-            _onMove(state);
+            assignStyleState(element, state);
+            onMove?.(state);
         }
-        function onEnd() {
-            removeEventListener("pointermove", onMove);
-            state && _onStop?.(state);
+        function _onStop() {
+            removeEventListener("pointermove", _onMove);
+            state && onStop?.(state);
         }
-        addEventListener("pointermove", onMove, {passive: true});
-        addEventListener("pointerup",   onEnd,  {once:    true});
+        addEventListener("pointermove", _onMove, {passive: true});
+        addEventListener("pointerup",   _onStop, {once:    true});
     });
 }
 
@@ -71,16 +65,9 @@ export type ResizableOpts = {
 }
 
 export function makeResizable(element: HTMLElement, {
-    minW = 32, minH = 32, size = 16, onMove, onStop: _onStop, state
+    minW = 32, minH = 32, size = 16, onMove, onStop, state
 }: ResizableOpts = {}) {
-    const _onMove = (state: ResizeState) => {
-        onMove?.(state);
-        assignStyleState(element, state);
-    };
-    if (state) {
-        _onMove(state);
-        _onStop?.(state);
-    }
+    state && assignStyleState(element, state); /* restore size */
 
     const lrCorner = document.createElement("div");
     lrCorner.style.cssText =
@@ -95,8 +82,8 @@ export function makeResizable(element: HTMLElement, {
         const offsetX = event.clientX - element.offsetLeft - parseInt(getComputedStyle(element).width);
         const offsetY = event.clientY - element.offsetTop  - parseInt(getComputedStyle(element).height);
 
-        let state: ResizeState;
-        function onMove(event: PointerEvent) {
+        let state: ResizeState | undefined;
+        function _onMove(event: PointerEvent) {
             let x = event.clientX - element.offsetLeft - offsetX;
             let y = event.clientY - element.offsetTop  - offsetY;
             if (x < minW) { x = minW; }
@@ -105,14 +92,15 @@ export function makeResizable(element: HTMLElement, {
                 width:  `${x}px`,
                 height: `${y}px`,
             };
-            _onMove(state);
+            assignStyleState(element, state);
+            onMove?.(state);
         }
-        function onEnd() {
-            lrCorner.removeEventListener("pointermove", onMove);
-            state && _onStop?.(state);
+        function _onStop() {
+            lrCorner.removeEventListener("pointermove", _onMove);
+            state && onStop?.(state);
         }
-        lrCorner.addEventListener("pointermove",        onMove, {passive: true});
-        lrCorner.addEventListener("lostpointercapture", onEnd,  {once:    true});
+        lrCorner.addEventListener("pointermove",        _onMove, {passive: true});
+        lrCorner.addEventListener("lostpointercapture", _onStop, {once:    true});
     });
 }
 
