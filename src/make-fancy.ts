@@ -7,33 +7,27 @@ type ResizeState = Record<ResizeStyleProps, `${string}px`>;
 type AnyStyleProps = MoveStyleProps | ResizeStyleProps;
 type AnyState = MoveState | ResizeState;
 
-
-/**
- * @param {HTMLElement} element
- * @param {AnyState} state
- */
 function assignStyleState(element: HTMLElement, state: AnyState) {
     for (const [k, v] of Object.entries(state)) {
         element.style[k as AnyStyleProps] = v;
     }
 }
 
-
 export type MovableOpts = {
     handle?: HTMLElement,
-    onStop?: (state: MoveState) => void,
     onMove?: (state: MoveState) => void,
+    onStop?: (state: MoveState) => void,
     state?: MoveState,
 }
 
 export function makeMovable(element: HTMLElement, {
-    handle, onStop: _onStop, onMove, state
+    handle, onMove, onStop: _onStop, state
 }: MovableOpts = {}) {
     const _onMove = (state: MoveState) => {
         onMove?.(state);
         assignStyleState(element, state);
     };
-    if (state) {
+    if (state) { /* restore position */
         _onMove(state);
         _onStop?.(state);
     }
@@ -62,7 +56,7 @@ export function makeMovable(element: HTMLElement, {
             state && _onStop?.(state);
         }
         addEventListener("pointermove", onMove, {passive: true});
-        addEventListener("pointerup", onEnd, {once: true});
+        addEventListener("pointerup",   onEnd,  {once:    true});
     });
 }
 
@@ -71,13 +65,13 @@ export type ResizableOpts = {
     minW?: number,
     minH?: number,
     size?: number,
-    onStop?: (state: ResizeState) => void,
     onMove?: (state: ResizeState) => void,
+    onStop?: (state: ResizeState) => void,
     state?: ResizeState,
 }
 
 export function makeResizable(element: HTMLElement, {
-    minW = 32, minH = 32, size = 16, onStop: _onStop, onMove, state
+    minW = 32, minH = 32, size = 16, onMove, onStop: _onStop, state
 }: ResizableOpts = {}) {
     const _onMove = (state: ResizeState) => {
         onMove?.(state);
@@ -90,7 +84,7 @@ export function makeResizable(element: HTMLElement, {
 
     const lrCorner = document.createElement("div");
     lrCorner.style.cssText =
-        `width: ${size}px; height: ${size}px; border-radius: ${(size / 2)}px;` +
+        `width: ${size}px; height: ${size}px; border-radius: ${(size / 2)}px; ` +
         `bottom: ${-(size / 2)}px; right: ${-(size / 2)}px; ` +
         `position: absolute; background-color: transparent; cursor: se-resize; touch-action: none;`;
     element.append(lrCorner);
@@ -117,8 +111,8 @@ export function makeResizable(element: HTMLElement, {
             lrCorner.removeEventListener("pointermove", onMove);
             state && _onStop?.(state);
         }
-        lrCorner.addEventListener("pointermove", onMove, {passive: true});
-        lrCorner.addEventListener("lostpointercapture", onEnd, {once: true});
+        lrCorner.addEventListener("pointermove",        onMove, {passive: true});
+        lrCorner.addEventListener("lostpointercapture", onEnd,  {once:    true});
     });
 }
 
