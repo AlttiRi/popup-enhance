@@ -95,7 +95,7 @@ export function makeResizable(element: HTMLElement, {
         `position: absolute; background-color: transparent; cursor: se-resize; touch-action: none;`;
     element.append(lrCorner);
 
-    lrCorner.addEventListener("pointerdown",event => {
+    lrCorner.addEventListener("pointerdown", event => {
         event.preventDefault();
         lrCorner.setPointerCapture(event.pointerId);
         const offsetX = event.clientX - element.offsetLeft - parseInt(getComputedStyle(element).width);
