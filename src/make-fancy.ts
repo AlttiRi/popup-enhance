@@ -23,7 +23,7 @@ export type MovableOpts = {
 export function makeMovable(element: HTMLElement, {
     handle, onMove, onStop, state
 }: MovableOpts = {}) {
-    state && assignStyleState(element, state); /* restore position */
+    state && assignStyleState(element, state); // Restore position
 
     const _handle = handle || element;
     _handle.style.userSelect  = "none";
@@ -32,6 +32,7 @@ export function makeMovable(element: HTMLElement, {
 
     _handle.addEventListener("pointerdown", (event: PointerEvent) => {
         event.preventDefault(); // To prevent bugs when all text on the page is selected (Ctrl + A)
+        _handle.setPointerCapture(event.pointerId); // To prevent a bug on double click
         const offsetY = event.clientY - parseInt(getComputedStyle(element).top);
         const offsetX = event.clientX - parseInt(getComputedStyle(element).left);
 
@@ -49,8 +50,8 @@ export function makeMovable(element: HTMLElement, {
             removeEventListener("pointermove", _onMove);
             state && onStop?.(state);
         }
-        addEventListener("pointermove", _onMove, {passive: true});
-        addEventListener("pointerup",   _onStop, {once:    true});
+        addEventListener("pointermove",        _onMove, {passive: true});
+        addEventListener("lostpointercapture", _onStop, {once:    true});
     });
 }
 
@@ -67,7 +68,7 @@ export type ResizableOpts = {
 export function makeResizable(element: HTMLElement, {
     minW = 32, minH = 32, size = 16, onMove, onStop, state
 }: ResizableOpts = {}) {
-    state && assignStyleState(element, state); /* restore size */
+    state && assignStyleState(element, state); // Restore size
 
     const lrCorner = document.createElement("div");
     lrCorner.style.cssText =
