@@ -12,17 +12,21 @@ function assignStyleState(element: HTMLElement, state: AnyState) {
         element.style[k as AnyStyleProps] = v;
     }
 }
+function resetStyleState(element: HTMLElement, state: AnyState) {
+    Object.keys(state).forEach(k => element.style[k as AnyStyleProps] = "");
+}
 
 export type MovableOpts = {
     handle?: HTMLElement,
     onMove?: (state: MoveState) => void,
     onStop?: (state: MoveState) => void,
     state?: MoveState,
+    reset?: Function,
 }
 
 export function makeMovable(element: HTMLElement, {
-    handle, onMove, onStop, state
-}: MovableOpts = {}) {
+    handle, onMove, onStop, state, reset
+}: MovableOpts) {
     state && assignStyleState(element, state); // Restore position
 
     const _handle = handle || element;
@@ -36,7 +40,6 @@ export function makeMovable(element: HTMLElement, {
         const offsetY = event.clientY - parseInt(getComputedStyle(element).top);
         const offsetX = event.clientX - parseInt(getComputedStyle(element).left);
 
-        let state: MoveState;
         function _onMove(event: PointerEvent) {
             !_handle.hasPointerCapture(event.pointerId) && _handle.setPointerCapture(event.pointerId);
             state = {
@@ -53,6 +56,7 @@ export function makeMovable(element: HTMLElement, {
         addEventListener("pointermove",        _onMove, {passive: true});
         addEventListener("lostpointercapture", _onStop, {once:    true});
     });
+    return { reset: () => { state && resetStyleState(element, state); reset?.(); } };
 }
 
 
@@ -63,10 +67,11 @@ export type ResizableOpts = {
     onMove?: (state: ResizeState) => void,
     onStop?: (state: ResizeState) => void,
     state?: ResizeState,
+    reset?: Function,
 }
 
 export function makeResizable(element: HTMLElement, {
-    minW = 32, minH = 32, size = 16, onMove, onStop, state
+    minW = 32, minH = 32, size = 16, onMove, onStop, state, reset
 }: ResizableOpts = {}) {
     state && assignStyleState(element, state); // Restore size
 
@@ -83,7 +88,6 @@ export function makeResizable(element: HTMLElement, {
         const offsetX = event.clientX - element.offsetLeft - parseInt(getComputedStyle(element).width);
         const offsetY = event.clientY - element.offsetTop  - parseInt(getComputedStyle(element).height);
 
-        let state: ResizeState | undefined;
         function _onMove(event: PointerEvent) {
             let x = event.clientX - element.offsetLeft - offsetX;
             let y = event.clientY - element.offsetTop  - offsetY;
@@ -103,54 +107,43 @@ export function makeResizable(element: HTMLElement, {
         lrCorner.addEventListener("pointermove",        _onMove, {passive: true});
         lrCorner.addEventListener("lostpointercapture", _onStop, {once:    true});
     });
+    return { reset: () => { state && resetStyleState(element, state); reset?.(); } };
 }
 
-
-type StoreStateOpt<T extends AnyState> = {
-    id: string,
+type StoreStateOpt<T extends AnyState, S extends string> = {
+    id: S extends "" ? never : S,
     onMove?: (state: T) => void,
     onStop?: (state: T) => void,
-    reset?: boolean,
-    restore?: boolean,
 };
 
 type StoreStateReturn<T extends AnyState> = {
     onMove?: (state: T) => void,
     onStop?: (state: T) => void,
     state?: T,
+    reset: () => void,
 };
 
-export function storeStateInLS<T extends AnyState>(
-    {id: lsName, onMove, onStop, reset, restore}: StoreStateOpt<T>
+export function storeStateInLS<T extends AnyState, S extends string>(
+    {id: lsName, onMove, onStop}: StoreStateOpt<T, S>
 ): StoreStateReturn<T> {
-    function _reset() {
-        lsName && localStorage.removeItem(lsName);
-    }
-    if (reset) {
-        _reset();
-    }
-    if (!restore || !lsName) {
-        return {onMove, onStop};
-    }
     const stateJson = localStorage.getItem(lsName);
     let state;
     if (stateJson) {
         state = JSON.parse(stateJson);
     }
 
-    function saveStateLS(state: T) {
-        localStorage.setItem(lsName, JSON.stringify(state));
-    }
+    const save = (state: T) => localStorage.setItem(lsName, JSON.stringify(state));
+    const reset = () => localStorage.removeItem(lsName);
 
     let _onStop;
     if (onStop) {
         _onStop = function(state: T) {
             onStop(state);
-            saveStateLS(state);
+            save(state);
         };
     } else {
-        _onStop = saveStateLS;
+        _onStop = save;
     }
 
-    return {onMove, onStop: _onStop, state};
+    return {onMove, onStop: _onStop, state, reset};
 }

@@ -18,6 +18,17 @@ body {
   overflow-x: hidden;
 }
 
+button {
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid darkgray;
+  outline: none;
+}
+button:active {
+  padding: 7px;
+  border: 2px solid darkgray;
+}
+
 .popup-root {
   display: flex;
   margin-top: 40px;
