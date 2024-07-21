@@ -58,6 +58,7 @@ button:active {
 .popup .popup-header {
   background-color: #e9ecef;
   padding-left: 4px;
+  padding-right: 4px;
 }
 .popup .popup-content {
   padding: 4px;
@@ -78,4 +79,9 @@ button:active {
 }
 .popup-content {
   max-width: 480px;
+}
+
+.number {
+  padding: 22px 32px;
+  user-select: none;
 }
