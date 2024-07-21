@@ -1,11 +1,11 @@
-import {getPopupEnh} from "./make-fancy.ts";
+import {getPopupEnh} from "@/popup-enhance.ts";
 
 const {makeMovableEx, makeResizableEx} = getPopupEnh("fancy-demo");
 
 const popup1 = document.querySelector<HTMLElement>("#popup-1")!;
 const popup1Header = popup1.querySelector<HTMLElement>(".popup-header")!;
 const {reset: resetPos1} =   makeMovableEx(popup1, "popup-1", {handle: popup1Header});
-const {reset: resetSiz1} = makeResizableEx(popup1, "popup-1");
+const {reset: resetSiz1} = makeResizableEx(popup1, "popup-1", {minW: 128, minH: 128});
 
 const popup2 = document.querySelector<HTMLElement>("#popup-2")!;
 const popup3 = document.querySelector<HTMLElement>("#popup-3")!;

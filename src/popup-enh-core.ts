@@ -1,11 +1,11 @@
-type MoveStyleProps = "top" | "left";
-type MoveState = Record<MoveStyleProps, `${string}px`>;
+export type MoveStyleProps = "top" | "left";
+export type MoveState = Record<MoveStyleProps, `${string}px`>;
 
-type ResizeStyleProps = "width" | "height";
-type ResizeState = Record<ResizeStyleProps, `${string}px`>;
+export type ResizeStyleProps = "width" | "height";
+export type ResizeState = Record<ResizeStyleProps, `${string}px`>;
 
-type AnyStyleProps = MoveStyleProps | ResizeStyleProps;
-type AnyState = MoveState | ResizeState;
+export type AnyStyleProps = MoveStyleProps | ResizeStyleProps;
+export type AnyState = MoveState | ResizeState;
 
 function assignStyleState(element: HTMLElement, state: AnyState) {
     for (const [k, v] of Object.entries(state)) {
@@ -108,65 +108,4 @@ export function makeResizable(element: HTMLElement, {
         lrCorner.addEventListener("lostpointercapture", _onStop, {once:    true});
     });
     return { reset: () => { state && resetStyleState(element, state); reset?.(); } };
-}
-
-type StoreStateOpt<T extends AnyState, S extends string> = {
-    id: S extends "" ? never : S,
-    onMove?: (state: T) => void,
-    onStop?: (state: T) => void,
-};
-
-type StoreStateReturn<T extends AnyState> = {
-    onMove?: (state: T) => void,
-    onStop?: (state: T) => void,
-    state?: T,
-    reset: () => void,
-};
-
-export function storeStateInLS<T extends AnyState, S extends string>(
-    {id: lsName, onMove, onStop}: StoreStateOpt<T, S>
-): StoreStateReturn<T> {
-    const stateJson = localStorage.getItem(lsName);
-    let state;
-    if (stateJson) {
-        state = JSON.parse(stateJson);
-    }
-
-    const save = (state: T) => localStorage.setItem(lsName, JSON.stringify(state));
-    const reset = () => localStorage.removeItem(lsName);
-
-    let _onStop;
-    if (onStop) {
-        _onStop = function(state: T) {
-            onStop(state);
-            save(state);
-        };
-    } else {
-        _onStop = save;
-    }
-
-    return {onMove, onStop: _onStop, state, reset};
-}
-
-export function getPopupEnh<S extends string>(appName: S extends "" ? never : S) {
-    return {
-        makeMovableEx<S extends string>(element: HTMLElement, id: S extends "" ? never : S, opt: MovableOpts = {}) {
-            return makeMovable(element, {
-                ...opt,
-                ...storeStateInLS({
-                    id: `${appName as string}--${id as string}--move-state`,
-                    ...opt,
-                })
-            });
-        },
-        makeResizableEx<S extends string>(element: HTMLElement, id: S extends "" ? never : S, opt: ResizableOpts = {}) {
-            return makeResizable(element, {
-                ...opt,
-                ...storeStateInLS({
-                    id: `${appName as string}--${id as string}--resize-state`,
-                    ...opt,
-                })
-            });
-        },
-    }
 }
