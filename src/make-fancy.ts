@@ -26,7 +26,7 @@ export type MovableOpts = {
 
 export function makeMovable(element: HTMLElement, {
     handle, onMove, onStop, state, reset
-}: MovableOpts) {
+}: MovableOpts = {}) {
     state && assignStyleState(element, state); // Restore position
 
     const _handle = handle || element;
@@ -146,4 +146,30 @@ export function storeStateInLS<T extends AnyState, S extends string>(
     }
 
     return {onMove, onStop: _onStop, state, reset};
+}
+
+export function makeMovableEx<S extends string>(
+    element: HTMLElement,
+    id: S extends "" ? never : S,
+    opt: MovableOpts = {}) {
+    return makeMovable(element, {
+        ...opt,
+        ...storeStateInLS({
+            id: `${id as string}--move-state`,
+            ...opt,
+        })
+    });
+}
+
+export function makeResizableEx<S extends string>(
+    element: HTMLElement,
+    id: S extends "" ? never : S,
+    opt: ResizableOpts = {}) {
+    return makeResizable(element, {
+        ...opt,
+        ...storeStateInLS({
+            id: `${id as string}--resize-state`,
+            ...opt,
+        })
+    });
 }
