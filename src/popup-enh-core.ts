@@ -16,6 +16,7 @@ function resetStyleState(element: HTMLElement, state: AnyState) {
     Object.keys(state).forEach(k => element.style[k as AnyStyleProps] = "");
 }
 
+
 export type MovableOpts = {
     handle?: HTMLElement,
     onMove?: (state: MoveState) => void,
@@ -71,7 +72,7 @@ export type ResizableOpts = {
 }
 
 export function makeResizable(element: HTMLElement, {
-    minW = 32, minH = 32, size = 16, onMove, onStop, state, reset
+    minW = 64, minH = 64, size = 16, onMove, onStop, state, reset
 }: ResizableOpts = {}) {
     state && assignStyleState(element, state); // Restore size
 
