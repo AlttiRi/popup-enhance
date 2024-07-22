@@ -1,4 +1,4 @@
-import {getPopupEnh} from "../index";
+import {getPopupEnh, makeFocusable} from "../index";
 
 const {makeMovableEx, makeResizableEx} = getPopupEnh("fancy-demo");
 
@@ -14,6 +14,10 @@ const {reset: resetPos2} = makeMovableEx(popup2, "popup-2");
 const {reset: resetPos3} = makeMovableEx(popup3, "popup-3", {
     handle: popup3.querySelector<HTMLElement>(".popup-header")!
 });
+
+makeFocusable(popup1, popup1Header);
+makeFocusable(popup2);
+makeFocusable(popup3);
 
 const resetBtn = document.querySelector("#reset-btn")!;
 resetBtn.addEventListener("click", () => {

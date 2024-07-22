@@ -61,3 +61,23 @@ export function getPopupEnh<S extends string>(appName: S extends "" ? never : S)
         },
     }
 }
+
+
+export function makeFocusable(element: HTMLElement, handle?: HTMLElement) {
+    element.setAttribute("tabindex", "-1");
+    element.addEventListener("focusin", focusin);
+    element.addEventListener("focusout", focusout);
+    let blurTimerId = 0;
+    function focusin() {
+        element.classList.add("focus");
+        clearTimeout(blurTimerId);
+    }
+    function focusout() {
+        blurTimerId = window.setTimeout(() => {
+            element.classList.remove("focus");
+        }, 250);
+    }
+    (handle || element).addEventListener("pointerdown", event => {
+        element.focus();
+    }, {passive: true});
+}

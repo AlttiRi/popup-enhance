@@ -67,11 +67,11 @@ button:active {
 }
 
 .popup.focus {
-  box-shadow: 0 0 10px #00000080
+  box-shadow: 0 0 10px #00000080;
 }
 .popup {
   box-shadow: 0 0 10px #0006;
-  transition: box-shadow .4s
+  transition: box-shadow .4s;
 }
 
 
