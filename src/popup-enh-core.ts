@@ -23,17 +23,18 @@ export type MovableOpts = {
     onStop?: (state: MoveState) => void,
     state?: MoveState,
     reset?: Function,
+    position?: "absolute" | "relative";
 }
 
 export function makeMovable(element: HTMLElement, {
-    handle, onMove, onStop, state, reset
+    handle, onMove, onStop, state, reset, position = "absolute"
 }: MovableOpts = {}) {
     state && assignStyleState(element, state); // Restore position
 
     const _handle = handle || element;
     _handle.style.userSelect  = "none";
     _handle.style.touchAction = "none";
-    element.style.position    = "absolute";
+    element.style.position    = position;
 
     _handle.addEventListener("pointerdown", (event: PointerEvent) => {
         event.preventDefault(); // To prevent bugs when all text on the page is selected (Ctrl + A)

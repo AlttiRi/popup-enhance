@@ -50,6 +50,7 @@ button:active {
   flex-direction: column;
   height: fit-content;
   border: grey 1px solid;
+  margin: 2px;
   background-color: #fff;
   z-index: 10;
 }
