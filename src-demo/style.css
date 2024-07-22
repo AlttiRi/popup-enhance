@@ -48,6 +48,7 @@ button:active {
 .popup {
   display: flex;
   flex-direction: column;
+  height: fit-content;
   border: grey 1px solid;
   background-color: #fff;
   z-index: 10;
