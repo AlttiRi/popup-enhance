@@ -1,12 +1,43 @@
 {
   "name": "popup-enhance",
-  "private": true,
   "version": "0.0.0",
+  "description": "",
+  "homepage": "https://github.com/AlttiRi/popup-enhance",
+  "keywords": ["movable", "resizable", "popup"],
+  "license": "MIT",
   "type": "module",
+  "main": "index.js",
+  "files": [
+    "src/**/*.js",
+    "src/**/*.d.ts",
+    "index.js",
+    "index.d.ts"
+  ],
+  "typings": "index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/alttiri/popup-enhance.git"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
-    "dev": "vite --host",
-    "build": "tsc && vite build",
-    "preview": "vite preview"
+    "dev":     "vite --host",
+    "build":   "vite build",
+    "preview": "vite preview",
+    "-": "",
+    "compile-ts":       "tsc --build",
+    "compile-ts-watch": "tsc --build --watch",
+    "clean-ts":         "tsc --build --clean",
+    "#": "",
+    "test-publish": "tsc --build && npm pack",
+    "publish-npm":  "tsc --build && npm publish --registry=https://registry.npmjs.org",
+    "publish-ghp":  "tsc --build && npm publish --registry=https://npm.pkg.github.com",
+    "##": "",
+    "unpublish-npm": "npm unpublish @alttiri/popup-enhance@0.0.0 --registry=https://registry.npmjs.org",
+    "###": "",
+    "login-npm": "npm login --registry=https://registry.npmjs.org",
+    "login-ghp": "npm login --registry=https://npm.pkg.github.com"
   },
   "devDependencies": {
     "@types/node": "20.12.12",

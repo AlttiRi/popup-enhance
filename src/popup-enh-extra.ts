@@ -1,4 +1,4 @@
-import {AnyState, makeMovable, makeResizable, MovableOpts, ResizableOpts} from "./popup-enh-core.ts";
+import {AnyState, makeMovable, makeResizable, MovableOpts, ResizableOpts} from "./popup-enh-core";
 
 
 type StoreStateOpt<T extends AnyState, S extends string> = {

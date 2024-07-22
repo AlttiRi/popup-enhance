@@ -1,4 +1,4 @@
-import {getPopupEnh} from "@/popup-enhance.ts";
+import {getPopupEnh} from "../index";
 
 const {makeMovableEx, makeResizableEx} = getPopupEnh("fancy-demo");
 
