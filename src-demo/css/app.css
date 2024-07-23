@@ -1,6 +1,8 @@
 #app {
-    min-width: 1280px;
-    min-height: 640px;
+    min-width: min(1280px, 100%);
+    min-height: min(640px, 100%);
+    padding: 16px;
+    box-sizing: border-box;
 }
 
 .number {
