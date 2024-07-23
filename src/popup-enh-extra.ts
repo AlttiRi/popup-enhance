@@ -41,6 +41,10 @@ export function storeStateInLS<T extends AnyState, S extends string>(
 
 export function getPopupEnh<S extends string>(appName: S extends "" ? never : S) {
     return {
+        /**
+         * Use `position: "relative"` option if you want to open multiple popups at once,
+         * and you do not want they overlap each other.
+         */
         makeMovableEx<S extends string>(element: HTMLElement, id: S extends "" ? never : S, opt: MovableOpts = {}) {
             return makeMovable(element, {
                 ...opt,
