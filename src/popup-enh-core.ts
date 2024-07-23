@@ -42,7 +42,9 @@ export function makeMovable(element: HTMLElement, {
         const offsetX = event.clientX - parseInt(getComputedStyle(element).left);
 
         function _onMove(event: PointerEvent) {
-            !_handle.hasPointerCapture(event.pointerId) && _handle.setPointerCapture(event.pointerId);
+            if (!_handle.hasPointerCapture(event.pointerId)) {
+                _handle.setPointerCapture(event.pointerId);
+            }
             state = {
                 top:  `${event.clientY - offsetY}px`,
                 left: `${event.clientX - offsetX}px`,
