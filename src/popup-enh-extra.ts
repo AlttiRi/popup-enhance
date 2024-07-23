@@ -64,7 +64,7 @@ export function getPopupEnh<S extends string>(appName: S extends "" ? never : S)
 
 /**
  * Makes the element focusable, adds `"focus"` class.
- * Specify the drag `handle` to run `"focus"` listener callback on `"pointerdown"` on it.
+ * Specify the drag `handle` (if exists) to run `"focus"` listener callback on `"pointerdown"` on it.
  */
 export function makeFocusable(element: HTMLElement, handle?: HTMLElement) {
     element.setAttribute("tabindex", "-1");
