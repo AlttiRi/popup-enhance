@@ -1,4 +1,4 @@
-It's a pretty simple library to enhance a popup to make it movable and resizable.
+It's a pretty simple JavaScript (TS) library to enhance a popup to make it movable and resizable.
 Mostly, for personal use.
 
 Only 33 lines to make it movable:
