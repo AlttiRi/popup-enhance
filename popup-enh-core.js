@@ -7,7 +7,7 @@ function resetStyleState(element, state) {
   Object.keys(state).forEach((k) => element.style[k] = "");
 }
 function makeMovable(element, {
-  handle,
+  handle: hdl,
   onMove,
   onStop,
   state,
@@ -15,16 +15,18 @@ function makeMovable(element, {
   position = "absolute"
 } = {}) {
   state && assignStyleState(element, state);
-  const _handle = handle || element;
-  _handle.style.userSelect = "none";
-  _handle.style.touchAction = "none";
+  const handle = hdl || element;
+  handle.style.userSelect = "none";
+  handle.style.touchAction = "none";
   element.style.position = position;
-  _handle.addEventListener("pointerdown", (event) => {
+  handle.addEventListener("pointerdown", (event) => {
     event.preventDefault();
     const offsetY = event.clientY - parseInt(getComputedStyle(element).top);
     const offsetX = event.clientX - parseInt(getComputedStyle(element).left);
     function _onMove(event2) {
-      !_handle.hasPointerCapture(event2.pointerId) && _handle.setPointerCapture(event2.pointerId);
+      if (!handle.hasPointerCapture(event2.pointerId)) {
+        handle.setPointerCapture(event2.pointerId);
+      }
       state = {
         top: `${event2.clientY - offsetY}px`,
         left: `${event2.clientX - offsetX}px`
