@@ -38,11 +38,11 @@ export function makeMovable(element: HTMLElement, {
 
     _handle.addEventListener("pointerdown", (event: PointerEvent) => {
         event.preventDefault(); // To prevent bugs when all text on the page is selected (Ctrl + A)
-        _handle.setPointerCapture(event.pointerId); // To prevent a bug on double click
         const offsetY = event.clientY - parseInt(getComputedStyle(element).top);
         const offsetX = event.clientX - parseInt(getComputedStyle(element).left);
 
         function _onMove(event: PointerEvent) {
+            !_handle.hasPointerCapture(event.pointerId) && _handle.setPointerCapture(event.pointerId);
             state = {
                 top:  `${event.clientY - offsetY}px`,
                 left: `${event.clientX - offsetX}px`,
@@ -54,8 +54,8 @@ export function makeMovable(element: HTMLElement, {
             removeEventListener("pointermove", _onMove);
             state && onStop?.(state);
         }
-        addEventListener("pointermove",        _onMove, {passive: true});
-        addEventListener("lostpointercapture", _onStop, {once:    true});
+        addEventListener("pointermove", _onMove, {passive: true});
+        addEventListener("pointerup",   _onStop, {once:    true});
     });
     return { reset: () => { state && resetStyleState(element, state); reset?.(); } };
 }
