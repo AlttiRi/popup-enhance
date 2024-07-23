@@ -86,7 +86,7 @@ export function makeResizable(element: HTMLElement, {
     element.append(lrCorner);
 
     lrCorner.addEventListener("pointerdown", event => {
-        event.preventDefault();
+        event.preventDefault(); // To prevent (Ctrl + A) bug
         lrCorner.setPointerCapture(event.pointerId);
         const offsetX = event.clientX - element.offsetLeft - parseInt(getComputedStyle(element).width);
         const offsetY = event.clientY - element.offsetTop  - parseInt(getComputedStyle(element).height);
