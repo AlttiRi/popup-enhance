@@ -10,7 +10,7 @@ Also, there is en extra code to store the move / resize state in `localStorage`.
 
 See: [`popup-enh-extra.ts`](https://github.com/AlttiRi/popup-enhance/blob/6ae6928e935d64e2e447b6bb98e21188628b1002/src/popup-enh-extra.ts).
 
-CSS: [`popup.css`](https://github.com/AlttiRi/popup-enhance/blob/6ae6928e935d64e2e447b6bb98e21188628b1002/src-demo/css/popup.css) is here.
+CSS is here: [`popup.css`](https://github.com/AlttiRi/popup-enhance/blob/6ae6928e935d64e2e447b6bb98e21188628b1002/src-demo/css/popup.css).
 
 ---
 
