@@ -27,23 +27,23 @@ export type MovableOpts = {
 }
 
 export function makeMovable(element: HTMLElement, {
-    handle, onMove, onStop, state, reset, position = "absolute"
+    handle: hdl, onMove, onStop, state, reset, position = "absolute"
 }: MovableOpts = {}) {
     state && assignStyleState(element, state); // Restore position
 
-    const _handle = handle || element;
-    _handle.style.userSelect  = "none";
-    _handle.style.touchAction = "none";
+    const handle = hdl || element;
+    handle.style.userSelect  = "none";
+    handle.style.touchAction = "none";
     element.style.position    = position;
 
-    _handle.addEventListener("pointerdown", (event: PointerEvent) => {
+    handle.addEventListener("pointerdown", (event: PointerEvent) => {
         event.preventDefault(); // To prevent bugs when all text on the page is selected (Ctrl + A)
         const offsetY = event.clientY - parseInt(getComputedStyle(element).top);
         const offsetX = event.clientX - parseInt(getComputedStyle(element).left);
 
         function _onMove(event: PointerEvent) {
-            if (!_handle.hasPointerCapture(event.pointerId)) {
-                _handle.setPointerCapture(event.pointerId);
+            if (!handle.hasPointerCapture(event.pointerId)) {
+                handle.setPointerCapture(event.pointerId);
             }
             state = {
                 top:  `${event.clientY - offsetY}px`,
