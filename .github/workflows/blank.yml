@@ -1,3 +1,4 @@
+# Just grant "Read and write permissions" in "Workflow permissions" of you repo to make it working.
 name: GitHub Pages
 env:
   branch_name: gh-pages
