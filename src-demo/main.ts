@@ -19,6 +19,7 @@ makeFocusable(popup1, popup1h);
 makeFocusable(popup2);
 makeFocusable(popup3, popup3h);
 
+
 const resetBtn = document.querySelector("#reset-btn")!;
 resetBtn.addEventListener("click", () => {
     resetPos1();
@@ -26,6 +27,12 @@ resetBtn.addEventListener("click", () => {
     resetPos2();
     resetPos3();
 });
+
+const reloadBtn = document.querySelector("#reload-btn")!;
+reloadBtn.addEventListener("click", () => {
+    location.reload();
+});
+
 
 document.querySelectorAll<HTMLElement>(".number").forEach(elem => {
     elem.addEventListener("click", _ => {
