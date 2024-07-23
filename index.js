@@ -7,10 +7,11 @@ document.querySelector(".popup-root").insertAdjacentHTML("afterbegin", `
           <h2>Try it move / resize it</h2>
           <div>This popup is movable and resizable.</div>
           <hr>
-          <div>You can move it by the drag handle — the title bar and resize it by the right bottom corner.</div>
+          <div>You can <b>move</b> it by the drag handle — the title bar 
+               and <b>resize</b> it by the right bottom corner.</div>
           <hr>
           <div>The other two popups are only movable. 
-               The popup with the handle is interactable, you can click on the number to increase it.
+               Both popups are interactable, you can click on the number to increase it.
           </div>
         </div>
       </div>
