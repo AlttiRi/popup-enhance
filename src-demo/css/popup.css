@@ -1,0 +1,55 @@
+/* popup container */
+.popup-root {
+    display: flex;
+    margin-top: 40px;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 1000;
+}
+.popup-root > * {
+    pointer-events: all
+}
+
+/* popup */
+.popup {
+    display: flex;
+    flex-direction: column;
+    height: fit-content;
+    border: grey 1px solid;
+    margin: 2px;
+    background-color: #fff;
+    z-index: 10;
+}
+
+/* popup content */
+.popup .popup-header {
+    background-color: #e9ecef;
+    padding-left: 4px;
+    padding-right: 4px;
+}
+.popup .popup-content {
+    padding: 4px;
+    overflow-y: auto;
+}
+
+/* popup focusable */
+.popup[tabindex] {
+    outline: none;
+}
+.popup.focus {
+    box-shadow: 0 0 10px #00000080;
+}
+.popup {
+    box-shadow: 0 0 10px #0006;
+    transition: box-shadow .4s;
+}
+
+/* popup resizable (initial `max-width`) */
+.popup:not([style*="width:"]) {
+    max-width: 480px;
+}
