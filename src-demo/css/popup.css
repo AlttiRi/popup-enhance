@@ -34,6 +34,9 @@
 }
 .popup .popup-content {
     padding: 4px;
+}
+.popup .popup-content.scrollable {
+    /* requires to use a handle, otherwise the elements will not be movable in a mobile view */
     overflow-y: auto;
 }
 
