@@ -4,12 +4,13 @@ document.querySelector(".popup-root").insertAdjacentHTML("afterbegin", `
       <div class="popup" id="popup-1">
         <div class="popup-header">Popup Title</div>
         <div class="popup-content">
-          <h2>Try it</h2>
-          <div>Some content.</div>
-          <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-            Vel fringilla est ullamcorper eget. Egestas sed tempus urna et pharetra.
-            Aliquam etiam erat velit scelerisque in dictum non.
+          <h2>Try it move / resize it</h2>
+          <div>This popup is movable and resizable.</div>
+          <hr>
+          <div>You can move it by the drag handle — the title bar and resize it by the right bottom corner.</div>
+          <hr>
+          <div>The other two popups are only movable. 
+               The popup with the handle is interactable, you can click on the number to increase it.
           </div>
         </div>
       </div>
@@ -44,6 +45,10 @@ resetBtn.addEventListener("click", () => {
   resetSiz1();
   resetPos2();
   resetPos3();
+});
+const reloadBtn = document.querySelector("#reload-btn");
+reloadBtn.addEventListener("click", () => {
+  location.reload();
 });
 document.querySelectorAll(".number").forEach((elem) => {
   elem.addEventListener("click", (_) => {
