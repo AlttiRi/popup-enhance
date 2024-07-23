@@ -1,3 +1,4 @@
+import "./init-html";
 import {getPopupEnh, makeFocusable} from "../index";
 
 const {makeMovableEx, makeResizableEx} = getPopupEnh("popup-enhance-demo");

@@ -17,3 +17,13 @@ body {
     margin-left: calc(100vw - 100%);
     overflow-x: hidden;
 }
+
+.readme {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    padding: 2px 8px;
+    margin: 1px;
+    color: darkgray;
+    text-decoration: none;
+}
