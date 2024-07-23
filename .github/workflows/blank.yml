@@ -1,4 +1,4 @@
-# Just grant "Read and write permissions" in "Workflow permissions" of you repo to make it working.
+# Just grant "Read and write permissions" in "Workflow permissions" of your repo to make it working. Then push it.
 name: GitHub Pages
 env:
   branch_name: gh-pages
