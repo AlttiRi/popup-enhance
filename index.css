@@ -43,6 +43,7 @@ body {
     padding: 22px 32px;
     text-align: center;
     user-select: none;
+    width: 24px;
 }
 
 button {
@@ -98,6 +99,10 @@ button:active {
 
 .popup .popup-content {
     padding: 4px;
+}
+
+.popup .popup-content.scrollable {
+    /* requires to use a handle, otherwise the elements will not be movable in a mobile view */
     overflow-y: auto;
 }
 

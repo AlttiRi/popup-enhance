@@ -3,7 +3,7 @@ import "./popup-enh-core.js";
 document.querySelector(".popup-root").insertAdjacentHTML("afterbegin", `
       <div class="popup" id="popup-1">
         <div class="popup-header">Popup Title</div>
-        <div class="popup-content">
+        <div class="popup-content scrollable">
           <h2>Try it move / resize it</h2>
           <div>This popup is movable and resizable.</div>
           <hr>

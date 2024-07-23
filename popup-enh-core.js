@@ -21,7 +21,6 @@ function makeMovable(element, {
   element.style.position = position;
   _handle.addEventListener("pointerdown", (event) => {
     event.preventDefault();
-    _handle.setPointerCapture(event.pointerId);
     const offsetY = event.clientY - parseInt(getComputedStyle(element).top);
     const offsetX = event.clientX - parseInt(getComputedStyle(element).left);
     function _onMove(event2) {
@@ -38,7 +37,7 @@ function makeMovable(element, {
       state && onStop?.(state);
     }
     addEventListener("pointermove", _onMove, { passive: true });
-    addEventListener("lostpointercapture", _onStop, { once: true });
+    addEventListener("pointerup", _onStop, { once: true });
   });
   return { reset: () => {
     state && resetStyleState(element, state);
