@@ -22,6 +22,16 @@ body {
     overflow-x: hidden;
 }
 
+.readme {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    padding: 2px 8px;
+    margin: 1px;
+    color: darkgray;
+    text-decoration: none;
+}
+
 #app {
     min-width: 1280px;
     min-height: 640px;

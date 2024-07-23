@@ -22,7 +22,7 @@ function getPopupEnh(appName) {
   return {
     /**
      * Use `position: "relative"` option if you want to open multiple popups at once,
-     * and you do not want they overlap each other.
+     * and you do not want they overlap each other. However, don't use it with resizable popups.
      */
     makeMovableEx(element, id, opt = {}) {
       return makeMovable(element, {
