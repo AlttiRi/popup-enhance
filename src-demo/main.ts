@@ -1,6 +1,6 @@
 import {getPopupEnh, makeFocusable} from "../index";
 
-const {makeMovableEx, makeResizableEx} = getPopupEnh("fancy-demo");
+const {makeMovableEx, makeResizableEx} = getPopupEnh("popup-enhance-demo");
 
 const popup1  = document.querySelector<HTMLElement>("#popup-1")!;
 const popup1h =   popup1.querySelector<HTMLElement>(".popup-header")!;
