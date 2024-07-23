@@ -1,7 +1,7 @@
 {
-  "name": "popup-enhance",
-  "version": "0.0.0",
-  "description": "",
+  "name": "@alttiri/popup-enhance",
+  "version": "1.0.0",
+  "description": "A pretty simple JavaScript (TS) library to enhance a popup to make it movable and resizable",
   "homepage": "https://github.com/AlttiRi/popup-enhance",
   "keywords": ["movable", "resizable", "popup"],
   "license": "MIT",
@@ -34,7 +34,7 @@
     "publish-npm":  "tsc --build && npm publish --registry=https://registry.npmjs.org",
     "publish-ghp":  "tsc --build && npm publish --registry=https://npm.pkg.github.com",
     "##": "",
-    "unpublish-npm": "npm unpublish @alttiri/popup-enhance@0.0.0 --registry=https://registry.npmjs.org",
+    "unpublish-npm": "npm unpublish @alttiri/popup-enhance@1.0.0 --registry=https://registry.npmjs.org",
     "###": "",
     "login-npm": "npm login --registry=https://registry.npmjs.org",
     "login-ghp": "npm login --registry=https://npm.pkg.github.com"
