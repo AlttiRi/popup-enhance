@@ -1,9 +1,9 @@
 It's a pretty simple JavaScript (TS) library to enhance a popup to make it movable and resizable.
 Mostly, for personal use.
 
-Only 33 lines to make it movable: [`makemovable`](#makemovable)
+Only 33 lines to make it movable: [`makemovable` ↓](#makemovable)
 
-And 38 lines to make it resizable: [`makeResizable`](#makeResizable)
+And 38 lines to make it resizable: [`makeResizable` ↓](#makeResizable)
 
 Also, there is en extra code to store the move / resize state in `localStorage`.
 
