@@ -1,32 +1,34 @@
-It's a pretty simple JavaScript (TS) library to enhance a popup to make it movable and resizable.
-Mostly, for personal use.
+# PopupEnhance
 
-Only 33 lines to make it movable: [`makemovable` ↓](#makemovable)
 
-And 38 lines to make it resizable: [`makeResizable` ↓](#makeResizable)
+It's a pretty simple JavaScript (TS) library _(mostly, for personal use)_ to enhance a popup to make it **movable** and **resizable**.
 
-Also, there is en extra code to store the move / resize state in `localStorage`.
 
-See: [`popup-enh-extra.ts`](https://github.com/AlttiRi/popup-enhance/blob/6ae6928e935d64e2e447b6bb98e21188628b1002/src/popup-enh-extra.ts).
+It's only 33 lines to make it movable: [`makemovable` ↓](#makemovable) and 38 lines to make it resizable: [`makeResizable` ↓](#makeResizable)
 
-CSS is here: [`popup.css`](https://github.com/AlttiRi/popup-enhance/blob/6ae6928e935d64e2e447b6bb98e21188628b1002/src-demo/css/popup.css).
+Also, there is en extra code to store the move / resize state in `localStorage` ([`popup-enh-extra.ts`](https://github.com/AlttiRi/popup-enhance/blob/6ae6928e935d64e2e447b6bb98e21188628b1002/src/popup-enh-extra.ts)).
 
----
-
-Demo: https://alttiri.github.io/popup-enhance/
-
-Demo's code: [`main.ts`](https://github.com/AlttiRi/popup-enhance/blob/6ae6928e935d64e2e447b6bb98e21188628b1002/src-demo/main.ts).
+The required CSS is located here: [`popup.css`](https://github.com/AlttiRi/popup-enhance/blob/6ae6928e935d64e2e447b6bb98e21188628b1002/src-demo/css/popup.css).
 
 ---
 
-See also: https://github.com/AlttiRi/drag-select-demo
+### Demo
+
+https://alttiri.github.io/popup-enhance/ (see: [`main.ts`](https://github.com/AlttiRi/popup-enhance/blob/6ae6928e935d64e2e447b6bb98e21188628b1002/src-demo/main.ts)).
 
 ---
 
-### makeMovable
+### `makeMovable`
 
 https://github.com/AlttiRi/popup-enhance/blob/6ae6928e935d64e2e447b6bb98e21188628b1002/src/popup-enh-core.ts#L29-L62
 
-### makeResizable
+### `makeResizable`
 
 https://github.com/AlttiRi/popup-enhance/blob/6ae6928e935d64e2e447b6bb98e21188628b1002/src/popup-enh-core.ts#L75-L113
+
+
+---
+
+### See also
+
+- https://github.com/AlttiRi/drag-select-demo
