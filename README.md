@@ -29,6 +29,50 @@ https://alttiri.github.io/popup-enhance/ (see: [`main.ts`](https://github.com/Al
 
 ---
 
+### How to use
+
+```js
+import {getPopupEnh, makeFocusable} from "@alttiri/popup-enhance";
+
+const {makeMovableEx} = getPopupEnh("fancy-demo-app");
+
+const popupElem  = document.querySelector(".popup");
+const handleElem = popupElem.querySelector(".popup-header");
+
+const {reset} = makeMovableEx(popupElem, "popup-1", {handle: handleElem});
+makeFocusable(popupElem, handleElem);
+```
+
+- `"fancy-demo-app"` — `localStorage`' prefix for keys
+- `"popup-1"` — `localStorage`' key 
+
+The recommended HTML:
+```html
+<body>
+    <div id="app"> ... </div>
+    <div class="popup-root">
+        <div class="popup" id="popup-1">
+            <div class="popup-header">Popup Title</div>
+            <div class="popup-content"> ... </div>
+        </div>
+        <div class="popup" id="popup-2"> ... </div>
+    </div>
+</body>
+```
+
+The recommended CSS:
+```js
+// JS imports:
+import "@alttiri/popup-enhance/css/popup.css";
+import "@alttiri/popup-enhance/css/popup-content.css";
+// Or CSS import:
+// @import "@alttiri/popup-enhance/css/popup.css";
+// @import "@alttiri/popup-enhance/css/popup-content.css";
+```
+
+
+---
+
 ### `makeMovable`
 
 https://github.com/AlttiRi/popup-enhance/blob/6ae6928e935d64e2e447b6bb98e21188628b1002/src/popup-enh-core.ts#L29-L62
