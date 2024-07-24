@@ -1,3 +1,6 @@
 @import "./css/app-core.css";
 @import "./css/app.css";
-@import "./css/popup.css";
+@import "./css/app-popup.css";
+
+@import "../css/popup.css";
+@import "../css/popup-content.css";

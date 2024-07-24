@@ -26,20 +26,6 @@
     z-index: 10;
 }
 
-/* popup content */
-.popup .popup-header {
-    background-color: #e9ecef;
-    padding-left: 4px;
-    padding-right: 4px;
-}
-.popup .popup-content {
-    padding: 4px;
-}
-.popup .popup-content.scrollable {
-    /* requires to use a handle, otherwise the elements will not be movable in a mobile view */
-    overflow-y: auto;
-}
-
 /* popup focusable */
 .popup[tabindex] {
     outline: none;
@@ -50,9 +36,4 @@
 .popup {
     box-shadow: 0 0 10px #0006;
     transition: box-shadow .4s;
-}
-
-/* popup resizable (initial `max-width`) */
-.popup:not([style*="width:"]) {
-    max-width: 480px;
 }

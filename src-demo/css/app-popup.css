@@ -1,0 +1,4 @@
+/* popup resizable (initial `max-width`) */
+.popup:not([style*="width:"]) {
+    max-width: 480px;
+}

@@ -1,6 +1,6 @@
 {
   "name": "@alttiri/popup-enhance",
-  "version": "1.0.1-20240724",
+  "version": "1.0.2-20240724",
   "description": "A pretty simple JavaScript (TS) library to enhance a popup to make it movable and resizable",
   "homepage": "https://github.com/AlttiRi/popup-enhance",
   "keywords": ["movable", "resizable", "popup"],
@@ -11,7 +11,8 @@
     "src/**/*.js",
     "src/**/*.d.ts",
     "index.js",
-    "index.d.ts"
+    "index.d.ts",
+    "css"
   ],
   "typings": "index.d.ts",
   "repository": {
