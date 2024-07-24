@@ -4,11 +4,11 @@
 It's a pretty simple JavaScript (TS) library _(mostly, for personal use)_ to enhance a popup to make it **movable** and **resizable**.
 
 
-It's only 33 lines to make it movable: [`makemovable` ↓](#makemovable) and 38 lines to make it resizable: [`makeResizable` ↓](#makeResizable)
+It's only 34 lines to make it movable: [`makeMovable` ↓](#makeMovable) and 38 lines to make it resizable: [`makeResizable` ↓](#makeResizable)
 
-Also, there is en extra code to store the move / resize state in `localStorage` ([`popup-enh-extra.ts`](https://github.com/AlttiRi/popup-enhance/blob/6ae6928e935d64e2e447b6bb98e21188628b1002/src/popup-enh-extra.ts)).
+Also, there is en extra code to store the move / resize state in `localStorage` ([`popup-enh-extra.ts`](https://github.com/AlttiRi/popup-enhance/blob/606e39414083c47ebf6a1d2d5457ccf3f5e08c65/src/popup-enh-extra.ts)).
 
-The required CSS is located here: [`popup.css`](https://github.com/AlttiRi/popup-enhance/blob/6ae6928e935d64e2e447b6bb98e21188628b1002/src-demo/css/popup.css).
+The required CSS is located here: [`popup.css`](https://github.com/AlttiRi/popup-enhance/blob/606e39414083c47ebf6a1d2d5457ccf3f5e08c65/css/popup.css).
 
 ~~It's available on [npm](https://www.npmjs.com/package/@alttiri/popup-enhance):~~ (in 24 hours)
 
@@ -25,7 +25,7 @@ npm install @alttiri/popup-enhance@1.0.2-20240724 --registry=https://npm.pkg.git
 
 ### Demo
 
-https://alttiri.github.io/popup-enhance/ (see: [`main.ts`](https://github.com/AlttiRi/popup-enhance/blob/6ae6928e935d64e2e447b6bb98e21188628b1002/src-demo/main.ts)).
+https://alttiri.github.io/popup-enhance/ (see: [`main.ts`](https://github.com/AlttiRi/popup-enhance/blob/606e39414083c47ebf6a1d2d5457ccf3f5e08c65/src-demo/main.ts)).
 
 ---
 
@@ -75,11 +75,11 @@ import "@alttiri/popup-enhance/css/popup-content.css";
 
 ### `makeMovable`
 
-https://github.com/AlttiRi/popup-enhance/blob/6ae6928e935d64e2e447b6bb98e21188628b1002/src/popup-enh-core.ts#L29-L62
+https://github.com/AlttiRi/popup-enhance/blob/606e39414083c47ebf6a1d2d5457ccf3f5e08c65/src/popup-enh-core.ts#L29-L63
 
 ### `makeResizable`
 
-https://github.com/AlttiRi/popup-enhance/blob/6ae6928e935d64e2e447b6bb98e21188628b1002/src/popup-enh-core.ts#L75-L113
+https://github.com/AlttiRi/popup-enhance/blob/606e39414083c47ebf6a1d2d5457ccf3f5e08c65/src/popup-enh-core.ts#L76-L114
 
 
 ---
