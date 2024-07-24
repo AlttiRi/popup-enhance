@@ -60,6 +60,12 @@ button:active {
     border: 2px solid darkgray;
 }
 
+/* popup resizable (initial `max-width`) */
+
+.popup:not([style*="width:"]) {
+    max-width: 480px;
+}
+
 /* popup container */
 
 .popup-root {
@@ -91,23 +97,6 @@ button:active {
     z-index: 10;
 }
 
-/* popup content */
-
-.popup .popup-header {
-    background-color: #e9ecef;
-    padding-left: 4px;
-    padding-right: 4px;
-}
-
-.popup .popup-content {
-    padding: 4px;
-}
-
-.popup .popup-content.scrollable {
-    /* requires to use a handle, otherwise the elements will not be movable in a mobile view */
-    overflow-y: auto;
-}
-
 /* popup focusable */
 
 .popup[tabindex] {
@@ -123,8 +112,19 @@ button:active {
     transition: box-shadow .4s;
 }
 
-/* popup resizable (initial `max-width`) */
+/* popup content */
 
-.popup:not([style*="width:"]) {
-    max-width: 480px;
+.popup .popup-header {
+    background-color: #e9ecef;
+    padding-left: 4px;
+    padding-right: 4px;
+}
+
+.popup .popup-content {
+    padding: 4px;
+}
+
+.popup .popup-content.scrollable {
+    /* requires to use a handle, otherwise the elements will not be movable in a mobile view */
+    overflow-y: auto;
 }
