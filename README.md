@@ -18,7 +18,7 @@ npm i @alttiri/popup-enhance
 
 On GitHub Packages:
 ```bash
-npm install @alttiri/popup-enhance@1.0.2-20240724 --registry=https://npm.pkg.github.com
+npm install @alttiri/popup-enhance@1.0.3-20240724 --registry=https://npm.pkg.github.com
 ```
 
 ---
