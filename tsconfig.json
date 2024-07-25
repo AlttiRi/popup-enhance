@@ -3,29 +3,37 @@
     "target": "ES2020",
     "lib": ["ES2020", "DOM", "DOM.Iterable"],
 
+    /* Library preset */
     "module": "NodeNext",
     "moduleResolution": "NodeNext",
     "allowImportingTsExtensions": false,
     "noEmit": false,
     "declaration": true,
-    "skipLibCheck": true,
 
     "useDefineForClassFields": false,
     "resolveJsonModule": true,
     "isolatedModules": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "allowJs": false,
 
     "strict": true,
-    "noFallthroughCasesInSwitch": true,
-    "strictNullChecks": true,
-    "strictPropertyInitialization": true,
+    "strictNullChecks":    true,
     "strictFunctionTypes": true,
     "strictBindCallApply": true,
-    "alwaysStrict":     true,
-    "noImplicitAny":    true,
-    "noImplicitThis":   true
+    "strictPropertyInitialization": true,
+    "noFallthroughCasesInSwitch":   true,
+    "alwaysStrict":   true,
+    "noImplicitAny":  true,
+    "noImplicitThis": true,
   },
+  /* Library preset */
   "include": [
     "src/**/*.ts",
     "index.ts",
   ]
 }
+
+// Note:
+// `useDefineForClassFields` very notable slow-downs the object instancing
+// for the "target" is less than "ES2022" if is set to `true`.

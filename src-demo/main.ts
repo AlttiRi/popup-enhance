@@ -1,5 +1,5 @@
 import "./init-html.ts";
-import {getPopupEnh, makeFocusable} from "../index.ts";
+import {getPopupEnh, makeFocusable} from "@/index.ts";
 
 const {makeMovableEx, makeResizableEx} = getPopupEnh("popup-enhance-demo");
 
