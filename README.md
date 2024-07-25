@@ -10,15 +10,10 @@ Also, there is en extra code to store the move / resize state in `localStorage` 
 
 The required CSS is located here: [`popup.css`](https://github.com/AlttiRi/popup-enhance/blob/606e39414083c47ebf6a1d2d5457ccf3f5e08c65/css/popup.css).
 
-~~It's available on [npm](https://www.npmjs.com/package/@alttiri/popup-enhance):~~ (in 24 hours)
+It's available on [npm](https://www.npmjs.com/package/@alttiri/popup-enhance):
 
 ```bash
 npm i @alttiri/popup-enhance
-```
-
-On GitHub Packages:
-```bash
-npm install @alttiri/popup-enhance@1.0.3-20240724 --registry=https://npm.pkg.github.com
 ```
 
 ---
