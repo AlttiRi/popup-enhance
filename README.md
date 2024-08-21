@@ -82,3 +82,68 @@ https://github.com/AlttiRi/popup-enhance/blob/606e39414083c47ebf6a1d2d5457ccf3f5
 ### See also
 
 - https://github.com/AlttiRi/drag-select-demo
+
+
+## *.d.ts
+
+```ts
+export type MoveStyleProps = "top" | "left";
+export type MoveState = Record<MoveStyleProps, `${string}px`>;
+export type ResizeStyleProps = "width" | "height";
+export type ResizeState = Record<ResizeStyleProps, `${string}px`>;
+export type AnyStyleProps = MoveStyleProps | ResizeStyleProps;
+export type AnyState = MoveState | ResizeState;
+export type MovableOpts = {
+    handle?: HTMLElement;
+    onMove?: (state: MoveState) => void;
+    onStop?: (state: MoveState) => void;
+    state?: MoveState;
+    reset?: Function;
+    position?: "absolute" | "relative";
+};
+export declare function makeMovable(element: HTMLElement, { handle: hdl, onMove, onStop, state, reset, position }?: MovableOpts): {
+    reset: () => void;
+};
+export type ResizableOpts = {
+    minW?: number;
+    minH?: number;
+    size?: number;
+    onMove?: (state: ResizeState) => void;
+    onStop?: (state: ResizeState) => void;
+    state?: ResizeState;
+    reset?: Function;
+};
+export declare function makeResizable(element: HTMLElement, { minW, minH, size, onMove, onStop, state, reset }?: ResizableOpts): {
+    reset: () => void;
+};
+
+type StoreStateOpt<T extends AnyState, S extends string> = {
+    id: S extends "" ? never : S;
+    onMove?: (state: T) => void;
+    onStop?: (state: T) => void;
+};
+type StoreStateReturn<T extends AnyState> = {
+    onMove?: (state: T) => void;
+    onStop?: (state: T) => void;
+    state?: T;
+    reset: () => void;
+};
+export declare function storeStateInLS<T extends AnyState, S extends string>({ id: lsName, onMove, onStop }: StoreStateOpt<T, S>): StoreStateReturn<T>;
+export declare function getPopupEnh<S extends string>(appName: S extends "" ? never : S): {
+    /**
+     * Use `position: "relative"` option if you want to open multiple popups at once,
+     * and you do not want they overlap each other. However, don't use it with resizable popups.
+     */
+    makeMovableEx<S_1 extends string>(element: HTMLElement, id: S_1 extends "" ? never : S_1, opt?: MovableOpts): {
+        reset: () => void;
+    };
+    makeResizableEx<S_1 extends string>(element: HTMLElement, id: S_1 extends "" ? never : S_1, opt?: ResizableOpts): {
+        reset: () => void;
+    };
+};
+/**
+ * Makes the element focusable, adds `"focus"` class.
+ * Specify the drag `handle` (if exists) to run `"focus"` listener callback on `"pointerdown"` on it.
+ */
+export declare function makeFocusable(element: HTMLElement, handle?: HTMLElement): void;
+```
