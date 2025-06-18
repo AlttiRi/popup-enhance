@@ -1,4 +1,4 @@
-# PopupEnhance
+# [PopupEnhance](https://github.com/AlttiRi/popup-enhance)
 
 
 It's a pretty simple JavaScript (TS) library _(mostly, for personal use)_ to enhance a popup to make it **movable** and **resizable**.
